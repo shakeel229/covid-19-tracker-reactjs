@@ -13,6 +13,7 @@ import InfoBox from "./InfoBox";
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("WorldWide");
+  const [countryInfo, setCountryInfo] = useState({});
   useEffect(() => {
     const getCountriesData = async () => {
       await fetch("https://disease.sh/v3/covid-19/countries")
@@ -27,11 +28,21 @@ function App() {
     };
     getCountriesData();
   }, []);
-  const onCountrySelection = (e) => {
+  const onCountrySelection = async (e) => {
     const countryCode = e.target.value;
-    setCountry(countryCode);
-    //console.log("shakeel", countryCode);
+    const url =
+      countryCode === "WorldWide"
+        ? "https://disease.sh/v3/covid-19/all"
+        : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
+    await fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        setCountry(countryCode);
+        setCountryInfo(data);
+      });
   };
+  console.log("spk", countryInfo);
+
   return (
     <div className="app">
       <div className="app_left">
@@ -49,18 +60,25 @@ function App() {
                   <MenuItem value={country.value}>{country.name}</MenuItem>
                 );
               })}
-              <MenuItem value="worldwide">worldwide</MenuItem>
             </Select>
           </FormControl>
         </div>
         <div className="app_stats">
           <InfoBox
             title="Coronavirus Cases"
-            cases={1000}
-            total={2000}
+            cases={countryInfo.todayCases}
+            total={countryInfo.cases}
           ></InfoBox>
-          <InfoBox title="Recovered" cases={1000} total={2000}></InfoBox>
-          <InfoBox title="Deaths" cases={1000} total={2000}></InfoBox>
+          <InfoBox
+            title="Recovered"
+            cases={countryInfo.todayRecovered}
+            total={countryInfo.recovered}
+          ></InfoBox>
+          <InfoBox
+            title="Deaths"
+            cases={countryInfo.todayDeaths}
+            total={countryInfo.deaths}
+          ></InfoBox>
         </div>
         <Map></Map>
       </div>
