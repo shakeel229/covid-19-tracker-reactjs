@@ -10,7 +10,7 @@ body {
   justify-content: space-evenly;
 }
 .app_left {
-  width: 85vw;
+  flex: 0.9;
 }
 .app_right {
 }
@@ -29,7 +29,6 @@ body {
     flex-direction: column;
   }
   .app_left {
-    width: 98vw;
   }
   .app_right {
   }
