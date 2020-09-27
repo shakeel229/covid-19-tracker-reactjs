@@ -62,7 +62,7 @@ function App() {
         setMapzoom(4);
       });
   };
-
+  document.title = "COVID-19 Tracker by shakeel229 ";
   return (
     <div className="app">
       <div className="app_left">
