@@ -21,6 +21,7 @@ function App() {
   const [tableData, setTableData] = useState([]);
   const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
   const [mapzoom, setMapzoom] = useState(3);
+  const [mapCountries, setMapCountries] = useState([]);
   useEffect(async () => {
     await fetch("https://disease.sh/v3/covid-19/all")
       .then((response) => response.json())
@@ -39,6 +40,7 @@ function App() {
           setCountries(countries2);
           const sortedList = sortedData(data);
           setTableData(sortedList);
+          setMapCountries(data);
         });
     };
     getCountriesData();
@@ -54,6 +56,8 @@ function App() {
       .then((data) => {
         setCountry(countryCode);
         setCountryInfo(data);
+        setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+        setMapzoom(4);
       });
   };
 
@@ -94,7 +98,7 @@ function App() {
             total={countryInfo.deaths}
           ></InfoBox>
         </div>
-        <Map center={mapCenter} zoom={mapzoom}></Map>
+        <Map countries={mapCountries} center={mapCenter} zoom={mapzoom}></Map>
       </div>
       <Card className="app_right">
         <CardContent>
