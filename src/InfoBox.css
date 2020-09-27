@@ -1,5 +1,5 @@
 .infoBox {
-  flex: 1;
+  flex: 1 !important;
 }
 
 .infoBox:not(:last-child) {

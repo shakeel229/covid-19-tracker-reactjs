@@ -1,3 +1,5 @@
+import "./App.css";
+
 import {
   Card,
   CardContent,
@@ -7,7 +9,6 @@ import {
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import Map from "./Map";
-import "./App.css";
 import InfoBox from "./InfoBox";
 import Table from "./Table";
 import { sortedData } from "./utils";
@@ -22,6 +23,7 @@ function App() {
   const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
   const [mapzoom, setMapzoom] = useState(3);
   const [mapCountries, setMapCountries] = useState([]);
+  const [casesType, setCasesType] = useState("cases");
   useEffect(async () => {
     await fetch("https://disease.sh/v3/covid-19/all")
       .then((response) => response.json())
@@ -65,8 +67,11 @@ function App() {
     <div className="app">
       <div className="app_left">
         <div className="app_header">
-          <h1>COVID 19 TRACKER</h1>
-          <FormControl className="app_dropdown">
+          <h1 className="redColor">COVID 19 TRACKER</h1>
+          <FormControl
+            className="app_dropdown"
+            style={{ backgroundColor: "white" }}
+          >
             <Select
               variant="outlined"
               value={country}
@@ -83,29 +88,43 @@ function App() {
         </div>
         <div className="app_stats">
           <InfoBox
+            onClick={(e) => setCasesType("cases")}
+            isRed={true}
+            active={casesType === "cases"}
             title="Coronavirus Cases"
             cases={countryInfo.todayCases}
             total={countryInfo.cases}
           ></InfoBox>
           <InfoBox
+            onClick={(e) => setCasesType("recovered")}
             title="Recovered"
+            isRed={false}
+            active={casesType === "recovered"}
             cases={countryInfo.todayRecovered}
             total={countryInfo.recovered}
           ></InfoBox>
           <InfoBox
+            onClick={(e) => setCasesType("deaths")}
+            active={casesType === "deaths"}
             title="Deaths"
+            isRed={true}
             cases={countryInfo.todayDeaths}
             total={countryInfo.deaths}
           ></InfoBox>
         </div>
-        <Map countries={mapCountries} center={mapCenter} zoom={mapzoom}></Map>
+        <Map
+          casesType={casesType}
+          countries={mapCountries}
+          center={mapCenter}
+          zoom={mapzoom}
+        ></Map>
       </div>
       <Card className="app_right">
         <CardContent>
           <h2>Live Cases By Country</h2>
           <Table countries={tableData}></Table>
-          <h2>World Wide New Cases</h2>
-          <LineGraph></LineGraph>
+          <h2>World Wide New {casesType}</h2>
+          <LineGraph casesType={casesType}></LineGraph>
         </CardContent>
       </Card>
     </div>

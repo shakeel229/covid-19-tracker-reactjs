@@ -6,8 +6,12 @@ body {
 }
 .app {
   display: flex;
-  padding-top: 15px;
+  background-color: #f5f6fa;
+  padding: 20px;
   justify-content: space-evenly;
+}
+.infoBox {
+  flex: 1 !important;
 }
 .app_left {
   flex: 0.9;
@@ -18,18 +22,22 @@ body {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  justify-content: space-around;
+  justify-content: space-between;
 }
+.app__dropdown {
+  background-color: white;
+}
+
 .app_stats {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+}
+.redColor {
+  color: #fc3c3c !important;
+  font-size: 2rem;
 }
 @media (max-width: 990px) {
   .app {
     flex-direction: column;
-  }
-  .app_left {
-  }
-  .app_right {
   }
 }
