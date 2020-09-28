@@ -2,18 +2,22 @@
 
 ## A real time application which gives stats about covid situation around globe!
 
+![](covidApp.gif)
+
 <p align="center"> 
   <kbd>
-<img src="./covidApp"></img>
+<img src="./covidApp.gif"></img>
   </kbd>
 </p>
-## Sections 
-✔️ Map with countries cases details Popup
-✔️ List of all countries with total cases
-✔️ Drop Down to view cases stats for specific country
-✔️ Graph to show covid cases trend in last 3 months
-✔️ Fully mobile responsive CSS flexbox layout
-To view a live example, **[click here](https://covid-tracker-shakeel.netlify.app/)**
+
+## Sections
+
+✔️ Map with countries cases details Popup/
+✔️ List of all countries with total cases/
+✔️ Drop Down to view cases stats for specific country/
+✔️ Graph to show covid cases trend in last 3 months/
+✔️ Fully mobile responsive CSS flexbox layout/
+To view a live example, \*\*[click here](https://covid-tracker-shakeel.netlify.app/)
 
 ## Technologies
 
