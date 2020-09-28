@@ -13,7 +13,7 @@
 ✔️ Drop Down to view cases stats for specific country\
 ✔️ Graph to show covid cases trend in last 3 months\
 ✔️ Fully mobile responsive CSS flexbox layout\
-To view a live example, \*\*[click here](https://covid-tracker-shakeel.netlify.app/)
+To view a live example, [click here](https://covid-tracker-shakeel.netlify.app/)
 
 ## Technologies
 
