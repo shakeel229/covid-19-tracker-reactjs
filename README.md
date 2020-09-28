@@ -24,3 +24,23 @@ To view a live example, **[click here](https://covid-tracker-shakeel.netlify.app
 ✔️ Chart JS 2 to show cases trends line graph.
 
 ## Getting Started 🚀
+
+### Install ⚙️
+
+The application has module dependencies which can be installed by
+
+```
+npm install / yarn install
+```
+
+### Start 🏃
+
+```
+npm run start
+```
+
+### Build 😷
+
+```
+npm run build
+```
